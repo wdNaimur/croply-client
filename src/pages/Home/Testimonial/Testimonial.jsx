@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { FaQuoteLeft } from "react-icons/fa";
 import "./testimonial.css"; // Import the CSS override
+import Heading from "../../shared/Heading";
 
 const testimonials = [
   {
@@ -118,12 +119,10 @@ const Testimonial = () => {
 
   return (
     <div className="py-16 text-center">
-      <h2 className="text-2xl font-bold text-secondary mb-2">
-        What our customers are saying
-      </h2>
-      <p className="text-sm text-gray-500 w-full mx-auto mb-8 max-w-xl">
-        Trusted by farmers, buyers, and delivery heroes across the country.
-      </p>
+      <Heading
+        title={`Testimonials`}
+        subtitle={`Trusted by farmers, buyers, and delivery heroes across the country.`}
+      ></Heading>
 
       <Swiper
         modules={[Autoplay, Pagination]}
