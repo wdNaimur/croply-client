@@ -13,7 +13,6 @@ const Banner = () => {
   return (
     <Swiper
       spaceBetween={30}
-      centeredSlides={true}
       autoplay={{
         delay: 5500,
         disableOnInteraction: false,
@@ -21,6 +20,7 @@ const Banner = () => {
       pagination={{
         clickable: true,
       }}
+      loop={true}
       modules={[Autoplay, Pagination]}
       className="mySwiper rounded-2xl"
     >

@@ -197,14 +197,14 @@ const Testimonial = () => {
         <div className="flex items-center bg-transparent px-4 rounded-full">
           <button
             ref={prevRef}
-            className="custom-next text-base-100 hover:scale-110 transition  bg-primary p-2 rounded-full cursor-pointer"
+            className="custom-next text-base-100 hover:scale-110 transition  bg-primary p-2 rounded-full cursor-pointer z-10"
           >
             <FaArrowLeft className="text-2xl" />
           </button>
           <div className="custom-swiper-pagination flex justify-center gap-1 px-5" />
           <button
             ref={nextRef}
-            className="custom-next text-base-100 hover:scale-110 transition  bg-primary p-2 rounded-full cursor-pointer"
+            className="custom-next text-base-100 hover:scale-110 transition  bg-primary p-2 rounded-full cursor-pointer z-10"
           >
             <FaArrowRight className="text-2xl" />
           </button>
