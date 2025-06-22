@@ -1,12 +1,8 @@
 /* Position bullets a bit lower */
-.swiper-pagination {
-  transform: translateY(15px);
-}
 
 /* Custom bullet style */
 .swiper-pagination-bullet {
-  background-color: var(--color-base-100);
-  border: 1px solid var(--color-primary);
+  background-color: var(--color-primary);
 }
 
 /* Active bullet */

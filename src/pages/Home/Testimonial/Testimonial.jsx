@@ -1,10 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { FaQuoteLeft } from "react-icons/fa";
-import "./testimonial.css"; // Import the CSS override
+import "swiper/css/navigation";
+import { FaArrowLeft, FaArrowRight, FaQuoteLeft } from "react-icons/fa";
+import "./testimonial.css";
 import Heading from "../../shared/Heading";
 
 const testimonials = [
@@ -62,6 +63,8 @@ const testimonials = [
 
 const Testimonial = () => {
   const swiperRef = useRef(null);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
   const cardsRef = useRef([]);
   const [maxHeight, setMaxHeight] = useState(0);
 
@@ -99,12 +102,6 @@ const Testimonial = () => {
   };
 
   useEffect(() => {
-    if (swiperRef.current) {
-      updateSlideClasses(swiperRef.current);
-    }
-  }, []);
-
-  useEffect(() => {
     if (cardsRef.current.length) {
       let max = 0;
       cardsRef.current.forEach((card) => {
@@ -118,17 +115,21 @@ const Testimonial = () => {
   }, [maxHeight]);
 
   return (
-    <div className="py-16 text-center">
+    <div className="py-16 text-center relative">
       <Heading
         title={`Testimonials`}
         subtitle={`Trusted by farmers, buyers, and delivery heroes across the country.`}
-      ></Heading>
+      />
 
       <Swiper
-        modules={[Autoplay, Pagination]}
+        modules={[Autoplay, Pagination, Navigation]}
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
           updateSlideClasses(swiper);
+        }}
+        onBeforeInit={(swiper) => {
+          swiper.params.navigation.prevEl = prevRef.current;
+          swiper.params.navigation.nextEl = nextRef.current;
         }}
         onSlideChange={(swiper) => updateSlideClasses(swiper)}
         slidesPerView={1}
@@ -141,7 +142,11 @@ const Testimonial = () => {
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
-        pagination={{ clickable: true }}
+        pagination={{ clickable: true, el: ".custom-swiper-pagination" }}
+        navigation={{
+          prevEl: prevRef.current,
+          nextEl: nextRef.current,
+        }}
         className="mx-auto px-4 pb-8 mySwiper"
         breakpoints={{
           768: {
@@ -159,7 +164,7 @@ const Testimonial = () => {
         }}
       >
         {testimonials.map((item, i) => (
-          <SwiperSlide key={i} className="flex justify-center my-6 px-2">
+          <SwiperSlide key={i} className="flex justify-center mb-8 px-2">
             <div
               ref={(el) => (cardsRef.current[i] = el)}
               style={{ height: maxHeight ? `${maxHeight}px` : "auto" }}
@@ -169,7 +174,7 @@ const Testimonial = () => {
                 <FaQuoteLeft className="absolute top-4 left-4 text-primary/10 text-7xl pointer-events-none" />
               </div>
 
-              <div className="relative z-10 px-8 py-10 h-full flex flex-col justify-between">
+              <div className="relative z-10 px-8 py-8 h-full flex flex-col justify-between">
                 <p className="border-b-4 border-dashed border-b-primary/40 pb-4 mt-8 text-left">
                   {item.text}
                 </p>
@@ -186,6 +191,25 @@ const Testimonial = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {/* Custom Navigation Buttons */}
+      <div className=" flex justify-center items-center select-none -mt-5">
+        <div className="flex items-center bg-transparent px-4 rounded-full">
+          <button
+            ref={prevRef}
+            className="custom-next text-base-100 hover:scale-110 transition  bg-primary p-2 rounded-full cursor-pointer"
+          >
+            <FaArrowLeft className="text-2xl" />
+          </button>
+          <div className="custom-swiper-pagination flex justify-center gap-1 px-5" />
+          <button
+            ref={nextRef}
+            className="custom-next text-base-100 hover:scale-110 transition  bg-primary p-2 rounded-full cursor-pointer"
+          >
+            <FaArrowRight className="text-2xl" />
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
