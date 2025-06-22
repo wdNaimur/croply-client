@@ -14,8 +14,9 @@ const Banner = () => {
     <Swiper
       spaceBetween={30}
       autoplay={{
-        delay: 5500,
+        delay: 4000,
         disableOnInteraction: false,
+        pauseOnMouseEnter: true,
       }}
       pagination={{
         clickable: true,

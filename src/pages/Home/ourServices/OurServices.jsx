@@ -19,7 +19,6 @@ const services = [
     title: "Nationwide Delivery",
     description: `We deliver parcels nationwide with home delivery in every district, ensuring your products reach customers within 48–72 hours.`,
     icon: <FaGlobe className="text-4xl" />, // globe icon for nationwide
-    highlight: true,
   },
   {
     title: "Fulfillment Solution",
@@ -58,13 +57,12 @@ const OurServices = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 xl:gap-8 gap-4">
-        {services.map(({ title, description, icon, highlight }, i) => (
+        {services.map(({ title, description, icon }, i) => (
           <ServiceCard
             key={i}
             title={title}
             description={description}
             icon={icon}
-            highlight={highlight}
           />
         ))}
       </div>
