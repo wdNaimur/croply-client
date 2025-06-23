@@ -35,7 +35,7 @@ const ServiceCard = ({ title, description, icon }) => {
         className="pointer-events-none absolute inset-0 z-0 rounded-xl"
       >
         <div
-          className="absolute h-20 w-20 rounded-full bg-green-200 blur-2xl transition-transform duration-75"
+          className="absolute h-20 w-20 rounded-full bg-green-200 blur-sm transition-transform duration-75"
           style={{
             left: coords.x,
             top: coords.y,
