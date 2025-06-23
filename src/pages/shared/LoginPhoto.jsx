@@ -4,7 +4,7 @@ import locationIcon from "/img/authentication/LocationIcon.png";
 
 const LoginPhoto = () => {
   return (
-    <div className="max-w-[90%] relative select-none">
+    <div className="max-w-[90vw] sm:max-w-[90%] relative select-none lg:p-0 p-5">
       <img src={loginImage} alt="Login image" />
       <img
         className="absolute top-2/8 right-7/16 animate-bounce"
