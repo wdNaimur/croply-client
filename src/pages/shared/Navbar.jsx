@@ -2,8 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router";
 import CroplyLogo from "./CroplyLogo";
 import { motion, AnimatePresence } from "framer-motion";
+import useAuth from "../../hooks/useAuth";
+import NavProfile from "./NavProfile";
 
 const Navbar = () => {
+  const { user } = useAuth();
   const [showNavbar, setShowNavbar] = useState(true);
   const lastScrollY = useRef(0);
 
@@ -30,7 +33,7 @@ const Navbar = () => {
     <>
       <li>
         <NavLink
-          className="px-0 rounded-none mx-4 font-bold opacity-70 hover:bg-transparent hover:opacity-100 transition-all duration-300"
+          className="px-0 rounded-none mx-4 font-bold opacity-70 hover:bg-transparent hover:opacity-100 transition-all duration-300 border-b-[3px] border-dashed border-transparent py-0"
           to="/"
         >
           Home
@@ -38,7 +41,15 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className="px-0 rounded-none mx-4 font-bold opacity-70  hover:bg-transparent hover:opacity-100 transition-all duration-300"
+          className="px-0 rounded-none mx-4 font-bold opacity-70 hover:bg-transparent hover:opacity-100 transition-all duration-300 border-b-[3px] border-dashed border-transparent py-0"
+          to="/coverage"
+        >
+          Coverage
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className="px-0 rounded-none mx-4 font-bold opacity-70 hover:bg-transparent hover:opacity-100 transition-all duration-300 border-b-[3px] border-dashed border-transparent py-0"
           to="/about"
         >
           About
@@ -54,7 +65,7 @@ const Navbar = () => {
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
-          transition={{ duration: 0.4, ease: "anticipate" }}
+          transition={{ duration: 0.4, ease: "linear" }}
           className="navbar bg-base-200/60 rounded-2xl p-2 px-4 backdrop-blur-xl sticky top-5 z-50 border border-base-200/80 shadow-xl shadow-primary/5"
         >
           <div className="navbar-start">
@@ -92,12 +103,18 @@ const Navbar = () => {
             <ul className="menu px-0 menu-horizontal">{navLink}</ul>
           </div>
           <div className="navbar-end">
-            <Link
-              to="signin"
-              className="btn btn-primary text-white rounded-xl border-none shadow-none"
-            >
-              Sign In
-            </Link>
+            {user ? (
+              <NavProfile />
+            ) : (
+              <button>
+                <Link
+                  to="signin"
+                  className="btn btn-primary text-white rounded-xl border-none shadow-none"
+                >
+                  Sign In
+                </Link>
+              </button>
+            )}
           </div>
         </motion.div>
       )}
