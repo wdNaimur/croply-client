@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LeftHeading from "../shared/LeftHeading";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
 import SocialLogin from "./SocialLogin";
@@ -9,6 +9,7 @@ import useAuth from "../../hooks/useAuth";
 const SignIn = () => {
   const { signIn } = useAuth();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -20,6 +21,7 @@ const SignIn = () => {
       .then((result) => {
         setLoading(false);
         console.log(result);
+        navigate("/");
       })
       .catch((error) => {
         setLoading(false);
@@ -33,10 +35,11 @@ const SignIn = () => {
   return (
     <div className="mx-auto w-full lg:mt-0 lg:mb-0 mt-20 mb-10 lg:p-0 p-5">
       <AnimatePresence>
+        {/* Form container */}
         <motion.form
           layout
           onSubmit={handleSubmit(onSubmit)}
-          className="fieldset bg-base-200 border-primary/10 shadow-xl shadow-primary/10 rounded-box border px-5 py-8 xl:max-w-xl lg:max-w-[28.8rem] sm:max-w-[80vw] max-w-screen mx-auto"
+          className="fieldset bg-base-200 border-primary/10 shadow-xl shadow-primary/10 rounded-box border px-5 py-8 xl:max-w-xl lg:max-w-[28.8rem] sm:max-w-[520px]  mx-auto"
         >
           {/* heading  */}
           <div className="border-b-2 border-b-primary/40 border-dashed mb-4">

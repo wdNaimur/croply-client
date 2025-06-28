@@ -1,5 +1,4 @@
 import React from "react";
-import Heading from "../shared/Heading";
 import LeftHeading from "../shared/LeftHeading";
 
 const CoveragePage = () => {
