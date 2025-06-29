@@ -23,6 +23,7 @@ const AuthenticationLayout = () => {
   }
   return (
     <div className="text-base-content font-poppins min-h-screen grid grid-cols-1 lg:grid-cols-2 relative">
+      <Toaster />
       <div className="absolute top-5 left-5 z-10">
         <CroplyLogo />
       </div>
